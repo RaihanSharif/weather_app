@@ -1,7 +1,7 @@
 import "./styles.css";
 import clear_day from "./resources/clear-day.svg";
 import clear_night from "./resources/clear-night.svg";
-import cloudy from "./resources/fog.svg";
+import cloudy from "./resources/cloudy.svg";
 import fog from "./resources/fog.svg";
 import hail from "./resources/hail.svg";
 import partly_cloudy_day from "./resources/partly-cloudy-day.svg";
@@ -59,6 +59,14 @@ const iconSet = {
 const submitBtn = document.getElementById("submit");
 const searchBox = document.getElementById("search-input");
 const container = document.querySelector(".container");
+const maxTemp = document.getElementById("max-temp");
+const minTemp = document.getElementById("min-temp");
+const loc = document.getElementById("location");
+const icon = document.getElementById("icon");
+const conditions = document.getElementById("condition");
+const tempNow = document.getElementById("temp-now");
+const desc = document.getElementById("desc");
+const windElem = document.getElementById("wind");
 
 class HttpError extends Error {
   constructor(response) {
@@ -100,16 +108,24 @@ async function processData(location) {
       } else {
         alert(err);
       }
+      return 0;
     }
   }
 }
 
 function displayWeather(location) {
   processData(location).then((data) => {
-    const icon = document.createElement("img");
-    icon.src = iconSet[data.icon];
-    container.innerHTML = "";
-    container.appendChild(icon);
+    if (data != 0) {
+      loc.textContent = data.location;
+      icon.src = iconSet[data.icon];
+      icon.title = data.icon;
+      maxTemp.textContent = `max: ${data.maxTemp}°C`;
+      minTemp.textContent = `min: ${data.minTemp}°C`;
+      conditions.textContent = data.currentConditions;
+      tempNow.textContent = `${data.currentTemp}°C`;
+      desc.textContent = data.description;
+      windElem.textContent = `wind speed: ${data.currentWindSpeed}`;
+    }
   });
 }
 
