@@ -58,7 +58,6 @@ const iconSet = {
 
 const submitBtn = document.getElementById("submit");
 const searchBox = document.getElementById("search-input");
-const container = document.querySelector(".container");
 const maxTemp = document.getElementById("max-temp");
 const minTemp = document.getElementById("min-temp");
 const loc = document.getElementById("location");
