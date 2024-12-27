@@ -1,8 +1,8 @@
 {
-  "name": "top-drop-down",
+  "name": "weather-app",
   "version": "1.0.0",
   "description": "implementation of drop down menu using JS for The Odin Project",
-  "main": "dropdown.js",
+  "main": "index.js",
   "scripts": {
     "build": "webpack --config webpack.prod.js",
     "dev": "webpack serve --config webpack.dev.js",
